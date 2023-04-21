@@ -17,7 +17,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 @Configuration
 public class AppConfig {
-
+    /*
     @Autowired
     private DataSource dataSource;
 
@@ -26,6 +26,8 @@ public class AppConfig {
         FileUploadDAOImpl dao = new FileUploadDAOImpl(dataSource);
         return dao;
     }
+
+     */
 }
 
 

@@ -7,17 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
     <title>스프링부트 파일 업로드 만들기</title>
     <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 </head>
 <body>
-<div id="content">
+<div id="contents">
 
-</div>
+
 </div>
 </body>
 </html>

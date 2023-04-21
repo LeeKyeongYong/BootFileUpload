@@ -6,16 +6,27 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <title>스프링부트 파일 업로드 만들기 에러페이지 </title>
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 업로드 코드</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
 </head>
 <body>
-
+<div id="contents">
+    <h3>오류!!</h3>
+    <table>
+        <tr>
+            <th width="60" align="center">원인</th>
+            <td>${exception.message}</td>
+        </tr>
+    </table><br>
+    <div align="center">
+        <input type="button" value="목록" onclick="location.href='${pageContext.request.contextPath}/index'">
+    </div>
 </div>
 </body>
 </html>
+

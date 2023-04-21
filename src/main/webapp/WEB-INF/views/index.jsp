@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 </head>
 <body>
-<div id="content">
+<div id="contents">
     <h3>파일업로드 만들기</h3>
     <a href="filupload/fileUpload.do">파일업로드1</a><br/><br/>
     <a href="filupload/fileUpload2.do">파일업로드2</a>

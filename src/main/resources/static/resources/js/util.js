@@ -1,23 +1,23 @@
-finction isNull(src,dest,msg){
-    if(!src.value){
+const isNull = (src, dest, msg) => {
+    if (!src.value) {
         src.classList.add("error-border");
-        dest.textContent=msg;
+        dest.textContent = msg;
         return true;
     } else {
         src.classList.remove("error-border");
-        dest.textContent="";
+        dest.textContent = "";
         return false;
     }
-}
+};
 
-function isEqual(src1,src2,dest,msg){
-    if(src1.value===src2.value){
+const isEqual = (src1, src2, dest, msg) => {
+    if (src1.value === src2.value) {
         src2.classList.remove("error-border");
-        dest.textContent="";
+        dest.textContent = "";
         return true;
     } else {
-        src2.classList.remove("error-border");
-        dest.textContent=msg;
+        src2.classList.add("error-border");
+        dest.textContent = msg;
         return false;
     }
-}
+};

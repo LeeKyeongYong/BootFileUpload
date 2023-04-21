@@ -13,10 +13,16 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
-	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+	implementation 'jakarta.servlet:jakarta.servlet-api' //스프링부트 3.0 이상
+	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api' //스프링부트 3.0 이상
+	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl' //스프링부트 3.0 이상
+	//implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	//implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+	//runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
+	compileOnly 'org.projectlombok:lombok:1.18.22'
+	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

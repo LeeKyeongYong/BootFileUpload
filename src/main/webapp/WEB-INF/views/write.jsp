@@ -17,8 +17,7 @@
 <body>
 <div id="content">
     <h3>파일업로드 만들기</h3>
-    <a href="filupload/fileUpload.do">파일업로드1</a><br/><br/>
-    <a href="filupload/fileUpload2.do">파일업로드2</a>
+
 </div>
 </div>
 </body>

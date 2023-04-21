@@ -11,15 +11,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <html>
 <head>
-    <title>스프링부트 파일 업로드 만들기</title>
+    <title>스프링부트 파일 업로드 만들기 에러페이지 </title>
     <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
 </head>
 <body>
-<div id="content">
-    <h3>파일업로드 만들기</h3>
-    <a href="filupload/fileUpload.do">파일업로드1</a><br/><br/>
-    <a href="filupload/fileUpload2.do">파일업로드2</a>
-</div>
+
 </div>
 </body>
 </html>

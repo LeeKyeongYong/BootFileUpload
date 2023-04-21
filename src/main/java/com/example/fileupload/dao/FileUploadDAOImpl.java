@@ -1,4 +1,10 @@
 package com.example.fileupload.dao;
 
-public interface FileUploadDAOImpl {
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+@Mapper
+@Repository
+public class FileUploadDAOImpl {
+
 }

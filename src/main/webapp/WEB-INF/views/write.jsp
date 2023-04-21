@@ -30,21 +30,22 @@
                         <tr>
                             <th width="60" align="center"><label for="title">제목</label></th>
                             <td>
-                                <input type="text" name="title" id="title" size="60" value="${file.title}" required/>
+                                <input type="text" name="title" id="title" size="60" value="${file.title}" />
                                 <span class="error-text" id="title_error"></span>
                             </td>
                         </tr>
                         <tr>
                             <th align="center"><label for="content">내용</label></th>
                             <td>
-                                <textarea rows="20" cols="80" name="content" id="content" required>${file.content}</textarea>
+                                <textarea rows="20" cols="80" name="content" id="content" >${file.content}</textarea>
                                 <span class="error-text" id="content_error"></span>
                             </td>
                         </tr>
                         <tr>
                             <th align="center"><label for="picture">사진</label></th>
                             <td>
-                                <input type="file" name="picture" id="picture" size="60" required>
+                                <input type="file" name="picture" id="picture" size="60" >
+                                <br/><br/>
                                 <span class="error-text" id="picture_error"></span>
                             </td>
                         </tr>

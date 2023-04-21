@@ -1,6 +1,6 @@
 board{ font-size:12px; font-family:sans-serif; }
 #contents{ width:800px; margin:50px auto; }
-#contents table{ border-collapse: collapse; width: 800px; border:1px solid black;}
+#contents table{ border-collapse: collapse; width: 820px; border:1px solid black;}
 #contents table th{padding:5px; background-color:#dddddd; border: 1px dotted gray;}
 #contents table td{padding:5px; border:1px dotted gray;}
 .button{padding: 5px 0; background-color:#778899; border:1px solid gray;}

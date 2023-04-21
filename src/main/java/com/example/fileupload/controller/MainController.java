@@ -52,13 +52,47 @@ public class MainController {
         return "redirect:/index";
     }
 
-    //filupload/fileUploadView.do
-    //@RequestMapping(value="filupload/fileUploadView.do",method=RequestMethod.GET)
+    @RequestMapping(value="filupload/fileUploadView.do",method=RequestMethod.GET)
+    public String view(@RequestParam(value="no")Integer no,Model model){
+        FileUploadDTO dto=dao.getFileUpload(no);
+        dto.setContent(dto.getContent().replace("\r\n","<br/>"));
+        model.addAttribute("file",dto);
+        model.addAttribute("imageUrl",MyUtil.getImageUrl(no.intValue()));
+        return "view";
+    }
 
-    //filupload/fileUploadWrite.do
+    @RequestMapping(value="filupload/fileUploadEdit.do",method=RequestMethod.GET)
+    public String edit(@RequestParam(value="no")Integer no,Model model,HttpSession session){
+        FileUploadDTO dto=dao.getFileUpload(no);
+        model.addAttribute("file",dto);
+        model.addAttribute("imageUrl",MyUtil.getImageUrl(no.intValue()));
+        return "edit";
+    }
 
-    //filupload/fileUploadUpload.do
+    @RequestMapping(value="filupload/fileUploadEdit.do",method=RequestMethod.POST)
+    public String modify(@RequestParam(value="title") String title,
+                         @RequestParam(value="no")Integer no,
+                         @RequestParam(value="content")String content,
+                         @RequestParam(value="picture")MultipartFile picture,
+                         HttpSession session,
+                         Model model) {
+        String fileName = MyUtil.getRealFilename(no.intValue(), session);
+        if (picture.getOriginalFilename().length() != 0) {
+            MyUtil.validateImage(picture);
+            MyUtil.removeImage(fileName);
+            MyUtil.saveImage(fileName, picture);
+        }
+        FileUploadDTO dto = new FileUploadDTO(no, title, content, null);
+        dao.modifyFileUpload(dto);
+        return"redirect:/filupload/fileUploadView.do?no="+no.intValue();
+    }
 
-    //filupload/fileUploadRemove.do
+    @RequestMapping(value="filupload/fileUploadRemove.do",method=RequestMethod.GET)
+    public String remove(@RequestParam(value="no")Integer no,HttpSession session){
+        String fileName=session.getServletContext().getRealPath("/resources/images")+"/image"+no+".jpg";
+        MyUtil.removeImage(fileName);
+        dao.removeFileUpload(no);
+        return"redirect:/index";
+    }
 
 }

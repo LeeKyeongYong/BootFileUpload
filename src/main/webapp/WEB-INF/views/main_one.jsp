@@ -31,8 +31,8 @@
                     <c:forEach items="${fieleList}" var="file">
                         <tr>
                             <td align="center">${file.no}</td>
-                            <td><a href="${pageContext.request.contextPath}/filupload/fileUploadView.do">${file.title}</a></td>
-                            <td align="center"><fmt:formatDate value="${file.wdate}" type="both" pattern="yyyy.mm.dd"/></td>
+                            <td><a href="${pageContext.request.contextPath}/filupload/fileUploadView.do?no=${file.no}">${file.title}</a></td>
+                            <td align="center"><fmt:formatDate value="${file.wdate}" type="both" pattern="yyyy.MM.dd"/></td>
                         </tr>
                     </c:forEach>
                 </tbody>

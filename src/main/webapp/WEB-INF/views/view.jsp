@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>스프링부트 파일 업로드 만들기</title>
-    <link rel="stylesheet" type="text/css" href="resources/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
 </head>
 <body>
 <div id="contents">

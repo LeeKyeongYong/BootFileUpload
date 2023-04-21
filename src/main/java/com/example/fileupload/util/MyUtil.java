@@ -21,8 +21,9 @@ public class MyUtil {
     }
 
     public static void validateImage(MultipartFile image) {
-        if (!image.getContentType().equals("image/jpeg")) {
-            throw new ImageUploadException("Your file : " + image.getContentType() + ". Only JPG image accepted");
+        String contentType = image.getContentType();
+        if (contentType == null ||!contentType.startsWith("image/")) {
+            throw new ImageUploadException("Your file : " + image.getContentType() + ". Only image accepted");
         }
     }
 

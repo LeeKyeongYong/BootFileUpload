@@ -3,6 +3,7 @@ package com.example.fileupload.controller;
 import com.example.fileupload.dao.FileUploadDAO;
 import com.example.fileupload.domain.FileUploadDTO;
 import com.example.fileupload.util.MyUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ public class MainController {
 
     @Autowired
     private FileUploadDAO dao;
+
 
     @RequestMapping(value = {"/", "index"}, method = RequestMethod.GET)
     public String index(Model model) {
@@ -58,6 +60,5 @@ public class MainController {
     //filupload/fileUploadUpload.do
 
     //filupload/fileUploadRemove.do
-
 
 }

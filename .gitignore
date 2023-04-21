@@ -2,7 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,intellij
 
 ### Eclipse ###
-
+.gradle
+/build/
 .metadata
 .classpath
 .project

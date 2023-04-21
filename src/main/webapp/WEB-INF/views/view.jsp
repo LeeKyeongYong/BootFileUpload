@@ -14,7 +14,11 @@
 </head>
 <body>
 <div id="contents">
-
+    ${pageContext.request.contextPath}/dd<br/>
+    ${file.title}<br/>
+    ${file.content}<br/>
+    <fmt:formatDate value="${file.wdate}" type="both" pattern="yyyy/MM/dd a hh:mm:ss"/><br/>
+     <img src="${pageContext.request.contextPath}${imageUrl}" alt="image">
 
 </div>
 </body>

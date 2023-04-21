@@ -13,11 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class MyUtil {
 
     public static String getRealFilename(int no, HttpSession session) {
-        return session.getServletContext().getRealPath("/resources/images") + "/image" + no + ".jpg";
+        return session.getServletContext().getRealPath("/upload/images") + "/image" + no + ".jpg";
     }
 
     public static String getImageUrl(int no) {
-        return "resources/images/image" + no + ".jpg?" + new Date().getTime();
+        return "/upload/images/image" + no + ".jpg";
     }
 
     public static void validateImage(MultipartFile image) {

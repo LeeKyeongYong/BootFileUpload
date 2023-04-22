@@ -21,7 +21,7 @@ dependencies {
 	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 	implementation 'commons-io:commons-io:2.8.0'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	//implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+	implementation 'org.springframework:spring-jdbc:5.3.14' // spring-jdbc 모듈 추가
 	runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
 	compileOnly 'org.projectlombok:lombok:1.18.22'
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'

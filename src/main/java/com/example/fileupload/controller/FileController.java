@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -93,30 +94,6 @@ public class FileController {
         }
 
     }
-    /*
-    @RequestMapping(value = "filupload/m_fileUploadImage.do", method = RequestMethod.GET)
-    public void m_fileUploadImage(@RequestParam(value = "no") Integer no, HttpServletResponse response) {
-        try {
-            response.reset();
-            response.setContentType("image/jpeg");
-            InputStream is = dao.getPicture(no);
-            OutputStream os = response.getOutputStream();
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-            while ((bytesRead = is.read(buffer)) != -1) {
-                os.write(buffer, 0, bytesRead);
-            }
-            os.flush();
-            is.close();
-            os.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Error reading file from database", e);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error getting picture from database", e);
-        }
-
-    }
-*/
 
     //수정 폼
     @RequestMapping(value="filupload/m_fileUploadEdit.do",method=RequestMethod.GET)

@@ -66,7 +66,7 @@ public class MultiFileUploadDAOImpl extends JdbcDaoSupport implements MultiFileU
     }
 
     @Override
-   public InputStream getPicture(Integer no) throws SQLException {
+    public InputStream getPicture(Integer no) throws SQLException {
         final String sql = "select picture from file_upload where no=?";
         Connection con = jdbcTemplate.getDataSource().getConnection();
         PreparedStatement ps = null;

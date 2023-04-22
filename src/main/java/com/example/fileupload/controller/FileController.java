@@ -5,6 +5,7 @@ import com.example.fileupload.domain.FileUploadDTO;
 import com.example.fileupload.domain.FileVO;
 import com.example.fileupload.util.MyUtil;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.sql.SQLException;
+import java.util.Date;
 
 @Controller
 public class FileController {
@@ -59,11 +61,11 @@ public class FileController {
     }
 
     //이미지
-    @RequestMapping(value="filupload/m_fileUploadImage.do",method = RequestMethod.GET)
-    public void m_fileUploadImage(@RequestParam(value = "no") Integer no,
-                                  HttpServletResponse response) {
-        response.setContentType("image/jpeg");
+    @RequestMapping(value = "filupload/m_fileUploadImage.do", method = RequestMethod.GET)
+    public void m_fileUploadImage(@RequestParam(value = "no") Integer no, HttpServletResponse response) {
         try {
+            response.reset();
+            response.setContentType("image/jpeg");
             InputStream is = dao.getPicture(no);
             OutputStream os = response.getOutputStream();
             byte[] buffer = new byte[1024];
@@ -74,18 +76,37 @@ public class FileController {
             os.flush();
             is.close();
             os.close();
-        } catch (IOException | SQLException e) { // IOException과 SQLException 모두 처리
-            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading file from database", e);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error getting picture from database", e);
         }
     }
 
 
     //수정 폼
-
-
+    @RequestMapping(value="filupload/m_fileUploadEdit.do",method=RequestMethod.GET)
+    public String edit(@RequestParam(value = "no") Integer no, Model model) {
+        model.addAttribute("file",dao.getFileUpload(no));
+        return "m_edit";
+    }
 
     //수정하기
-
+    @RequestMapping(value="filupload/m_fileUploadEdit.do",method=RequestMethod.POST)
+    public String modify(@RequestParam(value="title") String title,
+                         @RequestParam(value="no")Integer no,
+                         @RequestParam(value="content")String content,
+                         @RequestParam(value = "picture", required = false) MultipartFile picture) {
+        if(picture.getOriginalFilename().length()==0){
+            dao.modifyFileUpload(new FileVO(no,title,content,null,null));
+        } else {
+                if(!picture.getContentType().equals("image/jpeg")){
+                    throw new RuntimeException("image/jpeg 형식의 이미지만 업로드 가능합니다.");
+                }
+                dao.modifyFileWithPicture(new FileVO(no,title,content,null,picture));
+        }
+        return"redirect:/filupload/fileUploadView.do?no="+no.intValue();
+    }
 
 
 

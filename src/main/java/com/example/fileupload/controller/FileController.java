@@ -63,33 +63,35 @@ public class FileController {
                                   HttpServletResponse response) {
         response.setContentType("image/jpeg");
         InputStream picture = null;
-        OutputStream os = null;
         BufferedInputStream bis = null;
-
+        OutputStream os = null;
         try {
             picture = dao.getPicture(no);
 
-            if(os == null) {
-                os = response.getOutputStream();
-            }
-            bis = new BufferedInputStream(picture);
-            int data;
-            while((data = bis.read())!=-1) {
-                os.write(data);
+            os = response.getOutputStream();
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = picture.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             throw new RuntimeException(e);
         } finally {
             try {
-                if(picture != null) {
-                    os.close();
+                if (picture != null) {
+                    picture.close();
+                }
+                if (bis != null) {
                     bis.close();
+                }
+                if (os != null) {
+                    os.flush();
+                    os.close();
                 }
             } catch (IOException e) {}
         }
-
     }
+
 
     //수정 폼
 

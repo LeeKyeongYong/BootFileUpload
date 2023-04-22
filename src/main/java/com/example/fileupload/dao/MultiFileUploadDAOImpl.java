@@ -62,34 +62,22 @@ public class MultiFileUploadDAOImpl extends JdbcDaoSupport implements MultiFileU
     @Override
     public FileVO getFileUpload(Integer no) {
         final String sql = "select no, title, content, wdate from file_upload where no=?";
-        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(FileVO.class), no);
+        return this.jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<FileVO>(FileVO.class), no);
     }
 
     @Override
-    public InputStream getPicture(Integer no) throws SQLException {
+    public InputStream getPicture(Integer no) {
         final String sql = "select picture from file_upload where no=?";
-        Connection con = jdbcTemplate.getDataSource().getConnection();
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, no);
-            rs = ps.executeQuery();
-            rs.next();
-            return rs.getBinaryStream(1);
-        } catch (SQLException ex) {
-            throw ex;
-        } finally {
-            if (rs != null) {
-                rs.close();
+        return this.getJdbcTemplate().queryForObject(sql, new RowMapper<InputStream>() {
+
+            @Override
+            public InputStream mapRow(ResultSet rs, int rowNum)
+                    throws SQLException {
+                // TODO Auto-generated method stub
+                return lobHandler.getBlobAsBinaryStream(rs, "picture");
             }
-            if (ps != null) {
-                ps.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
+
+        }, no);
     }
 
 
@@ -97,7 +85,7 @@ public class MultiFileUploadDAOImpl extends JdbcDaoSupport implements MultiFileU
     @Override
     public int modifyFileUpload(FileVO vo) {
         final String sql = "update file_upload set title=?, content=? where no=?";
-        return jdbcTemplate.update(sql, vo.getTitle(), vo.getContent(), vo.getNo());
+        return this.getJdbcTemplate().update(sql, vo.getTitle(), vo.getContent(), vo.getNo());
     }
 
     @Override

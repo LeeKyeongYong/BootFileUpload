@@ -62,6 +62,39 @@ public class FileController {
 
     //이미지
     @RequestMapping(value = "filupload/m_fileUploadImage.do", method = RequestMethod.GET)
+    public void m_fileUploadImage(@RequestParam(value = "no") Integer no,
+                                  HttpServletResponse response) {
+        response.setContentType("image/jpeg");
+        InputStream picture = null;
+        OutputStream os = null;
+        BufferedInputStream bis = null;
+
+        try {
+            picture = dao.getPicture(no);
+
+            if(os == null) {
+                os = response.getOutputStream();
+            }
+            bis = new BufferedInputStream(picture);
+            int data;
+            while((data = bis.read())!=-1) {
+                os.write(data);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if(picture != null) {
+                    os.close();
+                    bis.close();
+                }
+            } catch (IOException e) {}
+        }
+
+    }
+    /*
+    @RequestMapping(value = "filupload/m_fileUploadImage.do", method = RequestMethod.GET)
     public void m_fileUploadImage(@RequestParam(value = "no") Integer no, HttpServletResponse response) {
         try {
             response.reset();
@@ -81,8 +114,9 @@ public class FileController {
         } catch (SQLException e) {
             throw new RuntimeException("Error getting picture from database", e);
         }
-    }
 
+    }
+*/
 
     //수정 폼
     @RequestMapping(value="filupload/m_fileUploadEdit.do",method=RequestMethod.GET)
@@ -105,7 +139,7 @@ public class FileController {
                 }
                 dao.modifyFileWithPicture(new FileVO(no,title,content,null,picture));
         }
-        return"redirect:/filupload/fileUploadView.do?no="+no.intValue();
+        return"redirect:/filupload/m_fileUploadView.do?no="+no.intValue();
     }
 
 

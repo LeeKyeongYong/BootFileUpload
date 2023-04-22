@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,10 +66,33 @@ public class MultiFileUploadDAOImpl extends JdbcDaoSupport implements MultiFileU
     }
 
     @Override
-    public InputStream getPicture(Integer no) {
+   public InputStream getPicture(Integer no) throws SQLException {
         final String sql = "select picture from file_upload where no=?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{no}, (rs, rowNum) -> lobHandler.getBlobAsBinaryStream(rs, "picture"));
+        Connection con = jdbcTemplate.getDataSource().getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, no);
+            rs = ps.executeQuery();
+            rs.next();
+            return rs.getBinaryStream(1);
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
+
+
 
     @Override
     public int modifyFileUpload(FileVO vo) {

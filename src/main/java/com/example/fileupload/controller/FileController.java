@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.sql.SQLException;
 
 @Controller
 public class FileController {
@@ -62,33 +63,19 @@ public class FileController {
     public void m_fileUploadImage(@RequestParam(value = "no") Integer no,
                                   HttpServletResponse response) {
         response.setContentType("image/jpeg");
-        InputStream picture = null;
-        BufferedInputStream bis = null;
-        OutputStream os = null;
         try {
-            picture = dao.getPicture(no);
-
-            os = response.getOutputStream();
+            InputStream is = dao.getPicture(no);
+            OutputStream os = response.getOutputStream();
             byte[] buffer = new byte[1024];
             int bytesRead;
-            while ((bytesRead = picture.read(buffer)) != -1) {
+            while ((bytesRead = is.read(buffer)) != -1) {
                 os.write(buffer, 0, bytesRead);
             }
-        } catch (IOException e) {
+            os.flush();
+            is.close();
+            os.close();
+        } catch (IOException | SQLException e) { // IOException과 SQLException 모두 처리
             throw new RuntimeException(e);
-        } finally {
-            try {
-                if (picture != null) {
-                    picture.close();
-                }
-                if (bis != null) {
-                    bis.close();
-                }
-                if (os != null) {
-                    os.flush();
-                    os.close();
-                }
-            } catch (IOException e) {}
         }
     }
 

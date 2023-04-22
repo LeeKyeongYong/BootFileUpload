@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <title>스프링부트 파일 업로드 만들기</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/util.js"></script>
     <script>

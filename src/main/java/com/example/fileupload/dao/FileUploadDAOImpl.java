@@ -21,7 +21,6 @@ public class FileUploadDAOImpl extends NamedParameterJdbcDaoSupport implements F
         setDataSource(dataSource);
     }
 
-
     @Override
     public List<FileUploadDTO> getAllFileList() {
         final String sql="select no,title,wdate from board_picture order by no desc";
@@ -55,7 +54,7 @@ public class FileUploadDAOImpl extends NamedParameterJdbcDaoSupport implements F
 
     @Override
     public int modifyFileUpload(FileUploadDTO dto) {
-        final String sql="update board_picture set title=:title,content:content where no=:no";
+        final String sql="update board_picture set title=:title,content=:content where no=:no";
         return this.getNamedParameterJdbcTemplate().update(sql,new BeanPropertySqlParameterSource(dto));
     }
 }

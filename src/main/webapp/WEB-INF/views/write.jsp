@@ -31,14 +31,14 @@
                         <tr>
                             <th width="60" align="center"><label for="title">제목</label></th>
                             <td>
-                                <input type="text" name="title" id="title" size="60" value="${file.title}" />
+                                <input type="text" name="title" id="title" size="60" value="" />
                                 <span class="error-text" id="title_error"></span>
                             </td>
                         </tr>
                         <tr>
                             <th align="center"><label for="content">내용</label></th>
                             <td>
-                                <textarea rows="20" cols="80" name="content" id="content" >${file.content}</textarea>
+                                <textarea rows="20" cols="80" name="content" id="content" ></textarea>
                                 <span class="error-text" id="content_error"></span>
                             </td>
                         </tr>

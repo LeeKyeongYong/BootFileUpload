@@ -36,15 +36,15 @@ public class MultiFileUploadDAOTest {
 
         // Create some sample data for the test
         fileList = new ArrayList<>();
-        fileList.add(new FileVO(1, "Test Title 1","est Title 1", new Date()));
-        fileList.add(new FileVO(2, "Test Title 2","est Title 2", new Date()));
-        fileList.add(new FileVO(3, "Test Title 3","est Title 3", new Date()));
+        fileList.add(new FileVO(6, "4424","4424", new Date()));
+        fileList.add(new FileVO(5, "7","7", new Date()));
+        fileList.add(new FileVO(3, "12347277","12347277", new Date()));
     }
 
     @Test
     public void testGetAllFileList() {
         // Given
-        final String sql = "select no, title, wdate from file_upload order by no desc";
+        final String sql = "select no, title,content,wdate from file_upload order by no desc";
         when(jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(FileVO.class))).thenReturn(fileList);
         // When
         List<FileVO> result = multiFileUploadDAO.getAllFileList();

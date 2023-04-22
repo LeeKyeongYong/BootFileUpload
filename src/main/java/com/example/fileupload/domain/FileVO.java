@@ -31,4 +31,13 @@ public class FileVO implements Serializable {
         this.picture = picture;
         this.isDeleted = false;
     }
+
+    public FileVO(Integer no, String title, String content, Date wdate) {
+        this.no = no;
+        this.title = title;
+        this.content = content;
+        this.wdate = wdate;
+        this.isDeleted = false;
+    }
+
 }
